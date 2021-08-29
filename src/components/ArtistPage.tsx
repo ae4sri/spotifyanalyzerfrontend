@@ -11,6 +11,7 @@ import { TopTenLongestLasting } from './tables/LongestLastingSongsTable';
 import { StrongestDatesTable } from './tables/StrongestDatesTable';
 import { HighestOnIndividualTable } from './tables/HighestOnIndividualTable';
 import Grid from '@material-ui/core/Grid';
+
 export const ArtistPage = () => {
     const params: { artist: string } = useParams()
     const artist = params.artist
@@ -38,49 +39,36 @@ export const ArtistPage = () => {
       )
       const useStyles = makeStyles({
         table: {
-          minWidth: 650,
+          minWidth: 400,
         },
       });
 
       const classes = useStyles();
 
-      const useStylesForGrid = makeStyles((theme) => ({
-        root: {
-          flexGrow: 1,
-        },
-        paper: {
-          padding: theme.spacing(2),
-          textAlign: 'center',
-          color: theme.palette.text.secondary,
-        },
-      }));
-
-      const gridclasses = useStylesForGrid();
-
-
-
-    return (
+    return ( 
         <>  
-        <Typography variant="h2" component="h3">
+        <Typography variant="h2">
             <b>{artist}</b>
         </Typography>
-        <p>Times on Chart: <b>{artistStats['timesOnChart']}</b></p>    
-        <div className={gridclasses.root}>
-            <Grid container spacing={3}>
-                <Grid item xs={6}>
-                    <TopTenLongestLasting topTenLongestLastingSongs={artistStats['tenStrongestSongs']} classes={classes} artist={artist} />
-                </Grid>
-                <Grid item xs={6}>
-                    <ArtistsSongsTable songList={artistStats['allSongs']} artist={artist} />
-                </Grid>
-                <Grid item xs={6}>
-                <StrongestDatesTable tenStrongestDates={artistStats['tenStrongestDates']} classes={classes} artist={artist} />
-                </Grid>
-                <Grid item xs={6}>
+        <Typography variant="h6">
+        Instances on Spotify Top 200 (how many appearances on chart across all songs and dates): <b>{artistStats['timesOnChart']}</b>
+        </Typography>
+        <br />
+        
+            <Grid container spacing={4}  style={{ margin: 0, width: '100%' }} > 
+              <Grid item xs={12} sm={4}>
+                  <TopTenLongestLasting topTenLongestLastingSongs={artistStats['tenStrongestSongs']} classes={classes} artist={artist} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                  <ArtistsSongsTable songList={artistStats['allSongs']} artist={artist} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+               <StrongestDatesTable tenStrongestDates={artistStats['tenStrongestDates']} classes={classes} artist={artist} />
+              </Grid>
+              <Grid item xs={12} sm={4}>
                 <HighestOnIndividualTable highestIndividualSongStreams={artistStats['highestIndividualSongStreams']} classes={classes} artist={artist}/>
+              </Grid>
             </Grid>
-        </Grid>
-        </div>      
     </>
     )
 }

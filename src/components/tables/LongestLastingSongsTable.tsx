@@ -13,7 +13,7 @@ export const TopTenLongestLasting = ({ topTenLongestLastingSongs, classes, artis
         <Typography variant="h6" id="tableTitle" component="div">
             Top ten longest lasting songs on chart
         </Typography>
-      <Table className={classes.table} size="small" aria-label="a dense table" style={{ maxWidth: '15%' }}>
+      <Table className={classes.table} size="small" aria-label="a dense table" style={{ maxWidth: '100%' }}>
         <TableHead>
           <TableRow>
             <TableCell align="left">Track</TableCell>

@@ -3,6 +3,7 @@ import { SearchBar } from './SearchBar';
 import { useState } from 'react';
 import spotifyService from '../services/server'
 import { SearchResults } from './SearchResults';
+import { Typography } from '@material-ui/core';
 export const SearchPage = () => {
     
     const [ query, setQuery ] = useState('')
@@ -20,6 +21,10 @@ export const SearchPage = () => {
 
   return (
     <>
+        <Typography variant="h2">
+            <b>Spotify Analyzer</b>
+        </Typography>
+        <Typography>Search for a song/artist in the search bar below</Typography>
         <SearchBar query={query} setQuery={setQuery} submitQuery={submitQuery} />
         <SearchResults results={results} />
     </>

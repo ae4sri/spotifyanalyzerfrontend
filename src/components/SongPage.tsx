@@ -11,6 +11,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { Link } from "react-router-dom";
 
 export const SongPage = () => {
     const params: { artist: string, song: string } = useParams()
@@ -50,7 +51,7 @@ export const SongPage = () => {
     return (
         <>
         <Typography variant="h2" component="h3">
-            <b>{song}</b> by <b>{artist}</b>
+            <b>{song}</b> by <b><Link style={{ textDecoration: 'none' }}  to={`/${artist}`}>{artist}</Link></b>
         </Typography>
         <p>Genres: <b>{genres}</b></p>
         <p>Days on Chart: <b>{songStats.daysOnChart}</b></p>

@@ -11,7 +11,7 @@ export default function ArtistsSongsTable({ songList, artist }: { songList: any,
     {
       field: "TrackName",
       headerName: "Song",
-      width: 300,
+      width: 500,
       editable: true,
       // eslint-disable-next-line react/display-name
       renderCell: (params:  any) => (
@@ -29,7 +29,7 @@ export default function ArtistsSongsTable({ songList, artist }: { songList: any,
       <Typography variant="h6" id="tableTitle" component="div">
         All charted songs
       </Typography>
-      <div style={{ height: 400, width: "50%" }}>
+      <div style={{ height: 400, width: "100%" }}>
         <DataGrid
           rows={songList}
           columns={columns}

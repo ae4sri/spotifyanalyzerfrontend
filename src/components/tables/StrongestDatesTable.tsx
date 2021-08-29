@@ -10,7 +10,7 @@ export const StrongestDatesTable = ({ tenStrongestDates, classes, artist }: any)
     return (
         <>
         <Typography variant="h6" id="tableTitle" component="div">
-            Dates when <b>{artist}</b> was streamed the most
+            Dates when <b>{artist}</b> streamed most (on Top 200)
         </Typography>
       <Table className={classes.table} size="small" aria-label="a dense table" style={{ maxWidth: '15%' }}>
         <TableHead>
