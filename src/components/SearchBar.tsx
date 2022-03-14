@@ -7,11 +7,17 @@ export const SearchBar = ({ query, setQuery, submitQuery}: {
     setQuery: Dispatch<SetStateAction<string>>, 
     submitQuery: (event: React.SyntheticEvent<EventTarget>) => void
     }) => {
+
+
+        const canSearch = (): boolean => {
+            return (query.length == 0)
+          }
+
     return (
         <form onSubmit={submitQuery}>
               <TextField id="standard-basic" value={query} onChange={({ target }) => setQuery(target.value)}  />        
         <br />
-              <Button type="submit" variant="outlined">Search</Button>              
+              <Button disabled={canSearch()} type="submit" variant="outlined">Search</Button>              
         </form>
     )
 
