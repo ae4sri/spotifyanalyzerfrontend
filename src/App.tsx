@@ -1,5 +1,5 @@
 import React from 'react';
-import { SearchPage } from './components/SearchPage';
+import { SearchPage } from './components/IndexPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { SongPage } from './components/SongPage'
 import { ArtistPage } from './components/ArtistPage';
