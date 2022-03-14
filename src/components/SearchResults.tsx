@@ -21,83 +21,84 @@ const useStyles = makeStyles({
   },
 });
 
-export const SearchResults = ({ results }: { results: { songs: Array<{ TrackName: string, Artist: string}>, artists: Array<{ Artist: string}>} }) => {
+export const SearchResults = ({ results }: { results: { songs: Array<{ TrackName: string, Artist: string }>, artists: Array<{ Artist: string }> } }) => {
   const classes = useStyles();
   const [searchSetting, setSearchSetting] = useState('songs')
-
-  useEffect(() => setSearchSetting('songs'),[])
+  useEffect(() => setSearchSetting('songs'), [])
 
   const handleSubmit = () => {
-      console.log("test")
-      setSearchSetting(searchSetting === 'songs' ? 'artists' : 'songs')
+    setSearchSetting(searchSetting === 'songs' ? 'artists' : 'songs')
   }
-  if (results.songs.length !== 0) {
-  return (
-      <>
-      {searchSetting}
-    <form onChange={handleSubmit}>
-    <RadioGroup row aria-label="position" name="position" defaultValue="songs">
-        <FormControl>
-            <FormControlLabel
-            value="songs"
-            control={<Radio color="primary" />}
-            label="Search Songs" 
-            />
-            <FormControlLabel
-            value="artists"
-            control={<Radio color="primary" />}
-            label="Search Artists"
-            />
-        </FormControl>
-    </RadioGroup>
-    </form>
-    {searchSetting === 'songs' ? 
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Song</TableCell>
-            <TableCell>Artist</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {results.songs.map((song, i) => (
-            <TableRow key={i}>
-              <TableCell component="th" scope="row">
-                <Link to={`/${song.Artist}/${song.TrackName}`}>{song.TrackName}</Link>
-              </TableCell>
-              <TableCell><Link to={`/${song.Artist}`}>{song.Artist}</Link></TableCell>
-            
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  : <TableContainer component={Paper}>
-  <Table className={classes.table} aria-label="simple table">
-    <TableHead>
-      <TableRow>
-        <TableCell>Artist</TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {results.artists.map((artist, i) => (
-        <TableRow key={i}>
-          <TableCell>
-            <Link to={`/${artist.Artist}`}>{artist.Artist}</Link>
-            </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-</TableContainer>
-  
-  }
-    </>
-  );
-    }
+
+  if (results.songs.length !== 0 || results.artists.length !== 0) {
     return (
-        <>
-        </>
-    )
+      <>
+      <p>Test</p>
+        {searchSetting}
+        <form onChange={handleSubmit}>
+          <RadioGroup row aria-label="position" name="position" defaultValue="songs">
+            <FormControl>
+              <FormControlLabel
+                value="songs"
+                control={<Radio color="primary" />}
+                label="Search Songs"
+              />
+              <FormControlLabel
+                value="artists"
+                control={<Radio color="primary" />}
+                label="Search Artists"
+              />
+            </FormControl>
+          </RadioGroup>
+        </form>
+
+        {searchSetting === 'songs' ?
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Song</TableCell>
+                  <TableCell>Artist</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {results.songs.map((song, i) => (
+                  <TableRow key={i}>
+                    <TableCell component="th" scope="row">
+                      <Link to={`/${song.Artist}/${song.TrackName}`}>{song.TrackName}</Link>
+                    </TableCell>
+                    <TableCell><Link to={`/${song.Artist}`}>{song.Artist}</Link></TableCell>
+
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          : <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Artist</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {results.artists.map((artist, i) => (
+                  <TableRow key={i}>
+                    <TableCell>
+                      <Link to={`/${artist.Artist}`}>{artist.Artist}</Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+        }
+      </>
+    );
+  }
+  return (
+    <>
+    </>
+  )
 }
